@@ -1,0 +1,36 @@
+
+body{
+    background-color: LightBlue;
+}
+
+
+@media only screen and (min-device-width : 300px) and (max-device-width : 480px){
+    form{
+        margin: 50% 25% 70px 25%;
+    }
+}
+@media only screen and (min-device-width : 480px) and (max-device-width : 860px){
+    form{
+        margin: 25% 25% 70px 25%;
+    }
+}
+@media only screen and (min-device-width : 860px) and (max-device-width : 1800px){
+    form{
+        margin: 13% 25% 70px 25%;
+    }
+}
+@media only screen and (min-device-width : 1800px){
+    form{
+        margin: 9% 25% 70px 25%;
+    }
+}
+.buttons_in{
+	padding: 0% 0% 0% 15%;
+
+}
+#secondBTN{
+	margin-left: 25px;
+}
+#Registration{
+	margin-left: 25px;
+}

@@ -1,0 +1,35 @@
+body{
+    background-color: LightGreen;
+}
+
+@media only screen and (min-device-width : 300px) and (max-device-width : 480px){
+    form{
+        margin: 50% 25% 70px 25%;
+    }
+}
+
+@media only screen and (min-device-width : 480px) and (max-device-width : 860px){
+    form{
+        margin: 19% 25% 70px 25%;
+    }
+}
+
+@media only screen and (min-device-width : 860px) and (max-device-width : 1800px){
+    form{
+        margin: 7% 25% 70px 25%;
+    }
+}
+
+@media only screen and (min-device-width : 1800px){
+    form{
+        margin: 3% 25% 70px 25%;
+    }
+}
+
+.buttons_in{
+    padding: 0% 8% 0% 25%;
+}
+
+#secondBTN{
+    margin-left: 50px;
+}
