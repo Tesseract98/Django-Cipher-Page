@@ -10,7 +10,8 @@ main
 {% endblock %}
 
 {% block content %}
-<form action="/main" method="POST">
+<form action="/cipher/" method="POST">
+    {% csrf_token %}
     <br>
     <div class="button_position">
         <button class="btn btn-primary" type="submit" name="btn_click" value="1">Cipher</button>
