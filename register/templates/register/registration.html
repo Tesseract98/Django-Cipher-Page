@@ -6,11 +6,12 @@ registration
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href={%static "register/style.css" %}>
+    <link rel="stylesheet" href={% static "register/style.css" %}>
 {% endblock %}
 
 {% block content %}
-<form action="/register" method="POST">
+<form action="/register/" method="POST">
+    {% csrf_token %}
     <div class="form-group">
         <label for="login">User Name</label>
         <input type="text" class="form-control" id="login" name="login" placeholder="Login">
