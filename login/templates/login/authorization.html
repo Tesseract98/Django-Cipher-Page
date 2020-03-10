@@ -10,7 +10,8 @@ authorization
 {% endblock %}
 
 {% block content %}
-<form action="/{{ link }}" method="POST">
+<form action="" method="POST">
+    {% csrf_token %}
     <div class="form-group">
         <label for="login">User Name</label>
         <input type="text" class="form-control" id="login" name="login" placeholder="Login">

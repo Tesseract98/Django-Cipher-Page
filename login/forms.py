@@ -1,7 +1,8 @@
 import re
+from django import forms
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm
-from .models import User
+from django.contrib.auth.hashers import check_password
+from register.models import User
 
 
 def pass_validator(value):
@@ -15,15 +16,13 @@ def log_validator(value):
         raise ValidationError(f'{value} wrong login')
 
 
-class UserFormRegistration(ModelForm):
-    class Meta:
-        model = User
-        fields = ('login', 'password')
+class UserFormLogin(forms.Form):
+    login = forms.CharField(max_length=20)
+    password = forms.CharField(max_length=20)
+    user = None
 
     def is_valid(self):
         valid = super().is_valid()
-        check_password = self.data["chk_password"]
-        # data = self.cleaned_data  # empty string not include in cleaned_data
         data = self.data
         try:
             log_validator(data['login'])
@@ -35,12 +34,8 @@ class UserFormRegistration(ModelForm):
         except ValidationError as err:
             self.add_error("password", error=err.message)
             return False
-        if data['password'] != check_password:
-            self.add_error('password', error='Password and check password not match!')
-            return False
-        return valid
+        self.user = User.objects.filter(login=data['login']).first()
+        return valid and check_password(data['password'], self.user.password)
 
-    def get_model(self):
-        user = User(login=self.data['login'])
-        user.set_password(self.data['password'])
-        return user
+    def get_user(self):
+        return self.user
