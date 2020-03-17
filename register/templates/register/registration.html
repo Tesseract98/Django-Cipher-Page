@@ -13,8 +13,8 @@ registration
 <form action="/register/" method="POST">
     {% csrf_token %}
     <div class="form-group">
-        <label for="login">User Name</label>
-        <input type="text" class="form-control" id="login" name="login" placeholder="Login">
+        <label for="username">User Name</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Login">
     </div>
     <div class="container">
        {% if form.errors %}

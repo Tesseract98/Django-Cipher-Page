@@ -12,13 +12,13 @@ def pass_validator(value):
 
 def log_validator(value):
     if len(value) < 5:
-        raise ValidationError(f'{value} wrong login')
+        raise ValidationError(f'{value} wrong username')
 
 
 class UserFormRegistration(ModelForm):
     class Meta:
         model = User
-        fields = ('login', 'password')
+        fields = ('username', 'password')
 
     def is_valid(self):
         valid = super().is_valid()
@@ -26,9 +26,9 @@ class UserFormRegistration(ModelForm):
         # data = self.cleaned_data  # empty string not include in cleaned_data
         data = self.data
         try:
-            log_validator(data['login'])
+            log_validator(data['username'])
         except ValidationError as err:
-            self.add_error("login", error=err.message)
+            self.add_error("username", error=err.message)
             return False
         try:
             pass_validator(data['password'])
@@ -41,6 +41,6 @@ class UserFormRegistration(ModelForm):
         return valid
 
     def get_model(self):
-        user = User(login=self.data['login'])
+        user = User(username=self.data['username'])
         user.set_password(self.data['password'])
         return user

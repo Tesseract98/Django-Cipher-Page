@@ -11,8 +11,6 @@ def main(request):
     if request.method == "GET":
         return render(request, "cipher/cipher_page.html")
     elif request.method == "POST":
-        str_cipher_text = ''
-        str_decipher_text = ''
         # key = Fernet.generate_key()
         key = b'KELWlrXv4ruCxp-Lt8FUZXLdn5wRNE8wOqWBLo7w0vI='
         cipher_suite = Fernet(key)

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'login',
     'cipher',
     'register',
+    'logout',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -103,6 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# AUTH_USER_MODEL = "register.User"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

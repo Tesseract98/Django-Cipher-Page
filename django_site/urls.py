@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'login/', include('login.urls')),
     path('cipher/', include('cipher.urls')),
-    path('register/', include('register.urls'))
+    path('register/', include('register.urls')),
+    path('logout/', include('logout.urls'))
 ]

@@ -13,11 +13,11 @@ def pass_validator(value):
 
 def log_validator(value):
     if len(value) < 5:
-        raise ValidationError(f'{value} wrong login')
+        raise ValidationError(f'{value} wrong username')
 
 
 class UserFormLogin(forms.Form):
-    login = forms.CharField(max_length=20)
+    username = forms.CharField(max_length=20)
     password = forms.CharField(max_length=20)
     user = None
 
@@ -25,16 +25,19 @@ class UserFormLogin(forms.Form):
         valid = super().is_valid()
         data = self.data
         try:
-            log_validator(data['login'])
+            log_validator(data['username'])
         except ValidationError as err:
-            self.add_error("login", error=err.message)
+            self.add_error("username", error=err.message)
             return False
         try:
             pass_validator(data['password'])
         except ValidationError as err:
             self.add_error("password", error=err.message)
             return False
-        self.user = User.objects.filter(login=data['login']).first()
+        self.user = User.objects.filter(username=data['username']).first()
+        if self.user is None:
+            self.add_error("password", error="wrong username or password")
+            return False
         return valid and check_password(data['password'], self.user.password)
 
     def get_user(self):
